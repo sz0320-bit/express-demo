@@ -1,6 +1,6 @@
 import express, { Router } from 'express';
 import { Request, Response } from 'express';
-import { getUserById, updateUser, deleteUser } from '../../controllers/user.controller';
+import { getUserById, updateUser, deleteUser } from '../controllers/user.controller';
 
 // Create a new router instance
 const router: Router = express.Router();

@@ -2,7 +2,7 @@ import express, { Application } from 'express';
 import swaggerUi from 'swagger-ui-express';
 const swaggerFile = require('../swagger-output.json');
 
-import * as users from './services/routes/user';
+import * as users from './routes/user';
 
 const app: Application = express();
 const port: number = 3000;
