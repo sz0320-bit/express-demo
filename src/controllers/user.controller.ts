@@ -1,7 +1,6 @@
 
 export const getUserById = (req, res) => {
     res.send(req.params.id)
-
 }
 
 export const updateUser = (req, res) => {

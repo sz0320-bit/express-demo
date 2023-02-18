@@ -6,8 +6,8 @@ import { getUserById, updateUser, deleteUser } from '../controllers/user.control
 const router: Router = express.Router();
 
 // Define routes
-router.get('/:id', (req: Request, res: Response) => getUserById(req, res));
-router.put('/:id', (req: Request, res: Response) => updateUser(req, res));
-router.delete('/:id', (req: Request, res: Response) => deleteUser(req, res));
+router.get('/user/:id', (req: Request, res: Response) => getUserById(req, res));
+router.put('/user/:id', (req: Request, res: Response) => updateUser(req, res));
+router.delete('/user/:id', (req: Request, res: Response) => deleteUser(req, res));
 
 export default router;

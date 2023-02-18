@@ -11,5 +11,5 @@ export const swaggerOptions = {
             description: 'Development server'
         }]
     },
-    apis: ['path/to/your/routes/*.js']
+    apis: ['path/to/your/routes/*.ts']
 };

@@ -1,17 +1,24 @@
 import express, { Application } from 'express';
 import swaggerUi from 'swagger-ui-express';
-const swaggerFile = require('../swagger-output.json');
+import swaggerAutogen from 'swagger-autogen';
+import path from 'path';
 
-import * as users from './routes/user';
+import routes from './routes';
 
 const app: Application = express();
 const port: number = 3000;
 
 app.use(express.json());
 
-app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
+// Generate swagger documentation
+const swaggerFile = path.join(__dirname, 'swagger-output.json');
+const endpoints = ['./src/routes/user.ts'];
+swaggerAutogen()(swaggerFile, endpoints);
 
-app.use('/user', users.default);
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(require(swaggerFile)));
+
+// Mount the routes exported from index.ts
+app.use(routes);
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
