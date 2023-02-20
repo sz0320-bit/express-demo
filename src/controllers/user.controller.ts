@@ -1,4 +1,6 @@
 import userService from '../services/user.service';
+import {Request, Response} from "express";
+import {CreateUserRequestBody} from "../models/sign-up";
 
 export const getUserById = async (req, res) => {
     try {
@@ -10,9 +12,11 @@ export const getUserById = async (req, res) => {
 };
 
 export const addUser = async (req, res) => {
+    const { username, profile_pic, password, email } = req.body;
+
     try {
         const newUser = await userService.addUser(req.body);
-        res.status(201).send('User successfully created!');
+        res.status(201).send(newUser);
     } catch (error) {
         res.status(500).send(error.message);
     }
