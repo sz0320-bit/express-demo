@@ -22,7 +22,10 @@ app.use(express.json());
 
 // Generate swagger documentation
 const swaggerFile = path.join(__dirname, 'swagger-output.json');
-const endpoints = ['./src/routes/user.ts'];
+const endpoints = [
+    './src/routes/user.ts',
+    './src/routes/auth.ts'
+];
 swaggerAutogen()(swaggerFile, endpoints);
 
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(require(swaggerFile)));

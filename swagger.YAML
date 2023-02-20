@@ -1,0 +1,93 @@
+swagger: '2.0'
+info:
+  version: '1.0.0'
+  title: Your Express API
+basePath: /api
+schemes:
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+
+security:
+  - Bearer: []
+
+paths:
+  /user/{id}:
+    get:
+      security:
+        - Bearer: []
+      summary: Get user by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+          format: int64
+          description: User ID
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+    delete:
+      security:
+        - Bearer: []
+      summary: Delete user by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+          format: int64
+          description: User ID
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+
+  /users:
+    get:
+      security:
+        - Bearer: []
+      summary: Get all users
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+
+    post:
+      security:
+        - Bearer: []
+      summary: Add a user
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              username:
+                type: string
+                description: User's username
+              password:
+                type: string
+                format: password
+                description: User's password
+            required:
+              - username
+              - password
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
