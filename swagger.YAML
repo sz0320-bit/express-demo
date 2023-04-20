@@ -20,7 +20,7 @@ security:
   - Bearer: []
 
 paths:
-  /user/{id}:
+  /users/{id}:
     get:
       security:
         - Bearer: []

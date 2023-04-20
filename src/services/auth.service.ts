@@ -1,6 +1,8 @@
 import { compare } from 'bcrypt';
 import {AuthUser} from "../entities/auth-user";
 import myDataSource from "../app-data-source";
+import jwt from 'jsonwebtoken';
+
 const userRepository = myDataSource.manager.getRepository(AuthUser);
  class AuthService {
     async validateUser(username: string, password: string): Promise<AuthUser | null> {
@@ -18,7 +20,12 @@ const userRepository = myDataSource.manager.getRepository(AuthUser);
         // return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
         return 'Logged In'
     }
+
+
+
 }
+
+
 
 
 export default new AuthService();

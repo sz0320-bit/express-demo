@@ -11,9 +11,9 @@ class UserService {
         return user || [];
     }
 
-    async addUser({username, profile_pic, password, email}) {
+    async addUser({ username, profile_pic, password, email }) {
         if (!username || !profile_pic || !password || !email) {
-            throw new Error('values are required.');
+            throw new Error('Values are required.');
         }
 
         try {
@@ -26,7 +26,6 @@ class UserService {
                 })
             );
 
-
             const newUser = await userRepository.save(
                 userRepository.create({
                     username,
@@ -36,18 +35,22 @@ class UserService {
                 })
             );
 
+            return {
+                message: 'Success',
+                username: newUser.username,
+                profile_id: newProfile.id,
+            };
         } catch (error) {
-            console.log(error)
-            throw error
+            console.log(error);
+            return {
+                message: 'Error',
+                error: error.message,
+            };
         }
-
-
-        return 'Success';
     }
 
     async deleteUser(id) {
-        await userRepository.delete({profile_id: id});
-        const result = await profileRepository.delete({id});
+        const result = await profileRepository.delete({id: id});
 
         if (result.affected) {
             return `Successfully deleted user ${id}.`;

@@ -1,8 +1,8 @@
-import { MigrationInterface, QueryRunner } from "typeorm"
-
-export class DDLMigration1676839091298 implements MigrationInterface {
-
-    public async up(queryRunner: QueryRunner): Promise<void> {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.DDLMigration1676839091298 = void 0;
+class DDLMigration1676839091298 {
+    async up(queryRunner) {
         await queryRunner.query(`
             CREATE TABLE auth_users (
                 id SERIAL PRIMARY KEY,
@@ -13,9 +13,8 @@ export class DDLMigration1676839091298 implements MigrationInterface {
             )
         `);
     }
-
-    public async down(queryRunner: QueryRunner): Promise<void> {
+    async down(queryRunner) {
         await queryRunner.query(`DROP TABLE auth_users`);
     }
-
 }
+exports.DDLMigration1676839091298 = DDLMigration1676839091298;

@@ -1,9 +1,8 @@
-import { MigrationInterface, QueryRunner } from "typeorm"
-import {User} from "../entities/user";
-
-export class CreateUserTable1676734590592 implements MigrationInterface {
-
-    public async up(queryRunner: QueryRunner): Promise<void> {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CreateUserTable1676734590592 = void 0;
+class CreateUserTable1676734590592 {
+    async up(queryRunner) {
         await queryRunner.query(`
           CREATE TABLE IF NOT EXISTS users (
       id SERIAL PRIMARY KEY,
@@ -14,9 +13,8 @@ export class CreateUserTable1676734590592 implements MigrationInterface {
     )
         `);
     }
-
-    public async down(queryRunner: QueryRunner): Promise<void> {
+    async down(queryRunner) {
         await queryRunner.query(`DROP TABLE "user"`);
     }
-
 }
+exports.CreateUserTable1676734590592 = CreateUserTable1676734590592;

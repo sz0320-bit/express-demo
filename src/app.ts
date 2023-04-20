@@ -17,14 +17,14 @@ myDataSource.initialize()
 
 const app: Application = express();
 const port: number = 3000;
-
 app.use(express.json());
 
 // Generate swagger documentation
 const swaggerFile = path.join(__dirname, 'swagger-output.json');
 const endpoints = [
     './src/routes/user.ts',
-    './src/routes/auth.ts'
+    './src/routes/auth.ts',
+    './src/routes/post.ts'
 ];
 swaggerAutogen()(swaggerFile, endpoints);
 

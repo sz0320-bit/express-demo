@@ -1,14 +1,19 @@
-import {Entity, Column, PrimaryGeneratedColumn, Timestamp} from "typeorm"
+import {Entity, Column, PrimaryGeneratedColumn, Timestamp, OneToMany} from "typeorm"
+import {Post} from "./post";
 
 @Entity({ name: 'users' })
 export class User {
     @PrimaryGeneratedColumn()
     id: number
 
-    @Column()
+    @Column({
+        unique: true
+    })
     username: string
 
-    @Column()
+    @Column({
+        nullable: true,
+    })
     profile_pic: string
 
     @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
@@ -17,6 +22,9 @@ export class User {
     @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
     date_updated: Date;
 
-    @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
+    @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" , nullable: true})
     last_online: Date;
+
+    @OneToMany(type => Post, post => post.user, {onDelete: 'CASCADE'})
+    posts: Post[]
 }
