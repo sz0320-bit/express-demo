@@ -43,7 +43,7 @@ __decorate([
     __metadata("design:type", Date)
 ], User.prototype, "last_online", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(type => post_1.Post, post => post.user, { onDelete: 'CASCADE' }),
+    (0, typeorm_1.OneToMany)(type => post_1.Post, post => post.user),
     __metadata("design:type", Array)
 ], User.prototype, "posts", void 0);
 User = __decorate([

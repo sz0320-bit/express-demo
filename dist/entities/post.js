@@ -19,7 +19,7 @@ __decorate([
     __metadata("design:type", Number)
 ], Post.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(type => user_1.User, user => user.posts),
+    (0, typeorm_1.ManyToOne)(type => user_1.User, user => user.posts, { onDelete: 'CASCADE' }),
     (0, typeorm_1.JoinColumn)({ name: 'user_id' }),
     __metadata("design:type", Number)
 ], Post.prototype, "user", void 0);

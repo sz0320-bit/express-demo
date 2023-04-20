@@ -5,15 +5,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const app_data_source_1 = __importDefault(require("../app-data-source"));
 const post_1 = require("../entities/post");
+const user_1 = require("../entities/user");
 const postRepository = app_data_source_1.default.manager.getRepository(post_1.Post);
+const userRepository = app_data_source_1.default.manager.getRepository(user_1.User);
 class UserService {
     async getPostsById(id) {
-        const posts = await postRepository.find({
+        const user = await userRepository.findOne({
             where: {
-                user: id
-            }
+                id
+            },
+            relations: ['posts']
         });
-        return posts || [];
+        return user.posts || [];
     }
     async addPost({ username, userId, title, desc }) {
         if (!username || !userId || !title || !desc) {

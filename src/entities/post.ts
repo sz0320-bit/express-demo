@@ -7,7 +7,7 @@ export class Post {
     id: number
 
 
-    @ManyToOne(type => User, user => user.posts)
+    @ManyToOne(type => User, user => user.posts, {onDelete: 'CASCADE'})
     @JoinColumn({name: 'user_id'})
     user: number
 

@@ -25,6 +25,6 @@ export class User {
     @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" , nullable: true})
     last_online: Date;
 
-    @OneToMany(type => Post, post => post.user, {onDelete: 'CASCADE'})
+    @OneToMany(type => Post, post => post.user)
     posts: Post[]
 }

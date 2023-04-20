@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.deletePost = exports.addPost = exports.getPostsById = void 0;
 const post_service_1 = __importDefault(require("../services/post.service"));
 const getPostsById = async (req, res) => {
+    console.log(req.params.id);
     try {
         const posts = await post_service_1.default.getPostsById(req.params.id);
         res.status(200).send(posts);
