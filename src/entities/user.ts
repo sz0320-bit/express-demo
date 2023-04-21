@@ -1,5 +1,6 @@
 import {Entity, Column, PrimaryGeneratedColumn, Timestamp, OneToMany} from "typeorm"
 import {Post} from "./post";
+import {Comment} from "./comment";
 
 @Entity({ name: 'users' })
 export class User {
@@ -27,4 +28,7 @@ export class User {
 
     @OneToMany(type => Post, post => post.user)
     posts: Post[]
+
+    @OneToMany(type => Comment, comment => comment.user)
+    comments: Comment[]
 }

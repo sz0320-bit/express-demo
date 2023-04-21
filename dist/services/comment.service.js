@@ -4,41 +4,48 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const app_data_source_1 = __importDefault(require("../app-data-source"));
-const post_1 = require("../entities/post");
 const user_1 = require("../entities/user");
-const postRepository = app_data_source_1.default.manager.getRepository(post_1.Post);
+const comment_1 = require("../entities/comment");
+const post_1 = require("../entities/post");
+const commentRepository = app_data_source_1.default.manager.getRepository(comment_1.Comment);
 const userRepository = app_data_source_1.default.manager.getRepository(user_1.User);
-class UserService {
-    async getPostsById(id) {
+const postRepository = app_data_source_1.default.manager.getRepository(post_1.Post);
+class CommentService {
+    async getCommentsByUserId(id) {
         const user = await userRepository.findOne({
             where: {
                 id
             },
-            relations: ['posts']
+            relations: ['comments']
         });
-        return user.posts || [];
+        return user.comments || [];
     }
-    async addPost({ username, userId, title, desc, tags }) {
-        if (!username || !userId || !title || !desc) {
+    async getCommentsByPostId(id) {
+        const post = await postRepository.findOne({
+            where: {
+                id
+            },
+            relations: ['comments']
+        });
+        return post.comments || [];
+    }
+    async addComment({ username, userId, message, postId }) {
+        if (!username || !userId || !message || !postId) {
             throw new Error('Values are required.');
         }
         try {
-            const newPost = {
+            const newPost = await commentRepository.save(commentRepository.create({
                 username: username,
                 user: userId,
-                description: desc,
-                title: title,
+                post: postId,
+                message: message,
                 date_created: new Date(),
                 date_updated: new Date(),
-            };
-            if (tags) {
-                newPost.tags = tags;
-            }
-            await postRepository.save(postRepository.create(newPost));
+            }));
             return {
                 message: 'Success',
-                name: newPost.title,
-                id: newPost.id,
+                post: newPost.post,
+                comment: newPost.id,
             };
         }
         catch (error) {
@@ -49,8 +56,8 @@ class UserService {
             };
         }
     }
-    async deletePost(id) {
-        const result = await postRepository.delete({ id: id });
+    async deleteComment(id) {
+        const result = await commentRepository.delete({ id: id });
         if (result.affected) {
             return `Successfully deleted post ${id}.`;
         }
@@ -59,4 +66,4 @@ class UserService {
         }
     }
 }
-exports.default = new UserService();
+exports.default = new CommentService();

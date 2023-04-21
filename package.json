@@ -12,15 +12,15 @@
     "typeorm": "^0.3.12"
   },
   "scripts": {
-    "start": "node src/app.ts",
+    "start": "tsc && node dist/app.js",
     "dev": "nodemon",
     "swagger-autogen": "node ./swagger.js",
     "migration:run": "typeorm migration:run -- -d src/app-data-source.ts",
     "migrate:create": "typeorm migration:create \" src/migrations/",
     "migrate:up": "ts-node --transpile-only ./node_modules/typeorm/cli.js migration:run -d ormconfig.ts",
     "migrate:down": "ts-node --transpile-only ./node-modules/typeorm/cli.js migration:revert -d ormconfig.ts",
-    "migration:create-dml": "tsc && typeorm migration:generate ./src/migrations/DMLMigration --dataSource ./ormconfig1.js",
-    "migration:create-ddl": "tsc && typeorm migration:generate ./src/migrations/DDLMigration --dataSource ./ormconfig1.js"
+    "migration:create-dml": "tsc && typeorm migration:generate ./dist/migrations/DMLMigration --dataSource ./ormconfig1.js",
+    "migration:create-ddl": "tsc && typeorm migration:generate ./dist/migrations/DDLMigration --dataSource ./ormconfig1.js"
   ,
     "build": "tsc"
   },

@@ -1,6 +1,7 @@
 import myDataSource from "../app-data-source";
 import {Post} from "../entities/post";
 import {User} from "../entities/user";
+import {DeepPartial} from "typeorm";
 
 const postRepository = myDataSource.manager.getRepository(Post);
 const userRepository = myDataSource.manager.getRepository(User);
@@ -16,28 +17,33 @@ class UserService {
         return user.posts || [];
     }
 
-    async addPost({username, userId, title, desc}) {
+    async addPost({username, userId, title, desc, tags}) {
         if (!username || !userId || !title || !desc) {
             throw new Error('Values are required.');
         }
 
         try {
-            const newPost = await postRepository.save(
-                postRepository.create({
-                    username: username,
-                    user: userId,
-                    description: desc,
-                    title: title,
-                    date_created: new Date(),
-                    date_updated: new Date(),
-                })
-            );
+            const newPost: DeepPartial<Post> = {
+                username: username,
+                user: userId,
+                description: desc,
+                title: title,
+                date_created: new Date(),
+                date_updated: new Date(),
+            }
 
+            if(tags){
+                newPost.tags = tags;
+            }
+
+            await postRepository.save(
+                postRepository.create(newPost)
+            );
 
             return {
                 message: 'Success',
-                username: newPost.title,
-                profile_id: newPost.id,
+                name: newPost.title,
+                id: newPost.id,
             };
         } catch (error) {
             console.log(error);

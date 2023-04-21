@@ -29,7 +29,7 @@ export const login = async (req, res) => {
         access_token: accessToken,
         refresh_token: refreshToken,
         username: user.username,
-        userId: user.id,
+        userId: user.profile_id,
         refresh_in: refreshTime,
         expires_in: expireTime
     });

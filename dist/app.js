@@ -21,11 +21,11 @@ const port = 3000;
 app.use(express_1.default.json());
 // Generate swagger documentation
 const swaggerFile = path_1.default.join(__dirname, 'swagger-output.json');
-const endpoints = [
-    './src/routes/user.ts',
-    './src/routes/auth.ts',
-    './src/routes/post.ts'
-];
+const fs = require('fs');
+const routesFolder = './src/routes';
+const endpoints = fs.readdirSync(routesFolder)
+    .filter(file => path_1.default.extname(file) === '.ts')
+    .map(file => path_1.default.join(routesFolder, file));
 (0, swagger_autogen_1.default)()(swaggerFile, endpoints);
 app.use('/docs', swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(require(swaggerFile)));
 // Mount the routes exported from index.ts

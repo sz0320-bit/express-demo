@@ -21,11 +21,13 @@ app.use(express.json());
 
 // Generate swagger documentation
 const swaggerFile = path.join(__dirname, 'swagger-output.json');
-const endpoints = [
-    './src/routes/user.ts',
-    './src/routes/auth.ts',
-    './src/routes/post.ts'
-];
+const fs = require('fs');
+const routesFolder = './src/routes';
+
+const endpoints = fs.readdirSync(routesFolder)
+    .filter(file => path.extname(file) === '.ts')
+    .map(file => path.join(routesFolder, file));
+
 swaggerAutogen()(swaggerFile, endpoints);
 
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(require(swaggerFile)));

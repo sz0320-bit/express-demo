@@ -1,5 +1,17 @@
-import {Entity, Column, PrimaryGeneratedColumn, Timestamp, ManyToOne, JoinColumn} from "typeorm"
+import {
+    Entity,
+    Column,
+    PrimaryGeneratedColumn,
+    Timestamp,
+    ManyToOne,
+    JoinColumn,
+    OneToMany,
+    JoinTable,
+    ManyToMany
+} from "typeorm"
 import {User} from "./user";
+import {Comment} from "./comment";
+import {Tag} from "./tag";
 
 @Entity({name: 'posts'})
 export class Post {
@@ -25,4 +37,11 @@ export class Post {
 
     @Column({nullable: false})
     description: string
+
+    @OneToMany(type => Comment, comment => comment.post)
+    comments: Comment[]
+
+    @ManyToMany(() => Tag, tag => tag.posts)
+    @JoinTable()
+    tags: Tag[]
 }
