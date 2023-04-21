@@ -11,7 +11,7 @@ exports.DataSourceConfig = {
     port: 5432,
     username: process.env.USERNAME,
     password: process.env.PASS,
-    database: process.env.USERNAME,
+    database: process.env.DBNAME,
     synchronize: true,
     ssl: true,
     logging: true,
