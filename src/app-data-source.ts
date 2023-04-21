@@ -7,6 +7,7 @@ require('dotenv')
     port: 5432,
     username: process.env.USERNAME,
     password: process.env.PASS,
+    ssl: true,
     database: process.env.USERNAME,
     entities: ["./dist/entities/*.js"],
     migrations: ["./dist/migrations/*.js"],

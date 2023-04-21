@@ -10,6 +10,7 @@ const AppDataSource = new DataSource({
     password: process.env.PASS,
     database: process.env.USERNAME,
     synchronize: true,
+    ssl: true,
     logging: true,
     "entities": [
         "src/entities/**/*.{ts,js}"
