@@ -11,7 +11,7 @@ require('dotenv')
     entities: ["./dist/entities/*.js"],
     migrations: ["./dist/migrations/*.js"],
     logging: true,
-    synchronize: false,
+    synchronize: true,
 })
 
 export default myDataSource

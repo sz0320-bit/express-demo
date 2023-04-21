@@ -12,7 +12,7 @@ exports.DataSourceConfig = {
     username: process.env.USERNAME,
     password: process.env.PASS,
     database: process.env.USERNAME,
-    synchronize: false,
+    synchronize: true,
     logging: true,
     "entities": [
         "dist/entities/**/*.{ts,js}"

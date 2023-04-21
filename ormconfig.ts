@@ -9,7 +9,7 @@ const AppDataSource = new DataSource({
     username: process.env.USERNAME,
     password: process.env.PASS,
     database: process.env.USERNAME,
-    synchronize: false,
+    synchronize: true,
     logging: true,
     "entities": [
         "src/entities/**/*.{ts,js}"
