@@ -19,6 +19,7 @@ securityDefinitions:
 security:
   - Bearer: []
 
+
 paths:
   /users/{id}:
     get:
