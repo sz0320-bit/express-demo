@@ -16,10 +16,10 @@ exports.DataSourceConfig = {
     ssl: true,
     logging: true,
     "entities": [
-        "dist/entities/**/*.{ts,js}"
+        "src/entities/**/*.{ts,js}"
     ],
     "migrations": [
-        "dist/migrations/**/*.{ts,js}"
+        "src/migrations/**/*.{ts,js}"
     ],
 };
 const dataSource = new typeorm_1.DataSource(exports.DataSourceConfig);
