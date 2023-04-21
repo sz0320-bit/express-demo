@@ -4,13 +4,13 @@ require('dotenv')
  const myDataSource = new DataSource({
     type: 'postgres',
     host: process.env.HOST,
-    port: 5432,
     username: process.env.USERNAME,
     password: process.env.PASS,
-    ssl: true,
+    port: 5432,
+    ssl: false,
     database: process.env.DBNAME,
-    entities: ["./src/entities/*.{ts,js}"],
-    migrations: ["./src/migrations/*.{ts,js}"],
+    entities: ["./dist/entities/*.{ts,js}"],
+    migrations: ["./dist/migrations/*.{ts,js}"],
     logging: true,
     synchronize: true,
 })

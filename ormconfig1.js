@@ -8,18 +8,18 @@ dotenv.config();
 exports.DataSourceConfig = {
     type: 'postgres',
     host: process.env.HOST,
-    port: 5432,
     username: process.env.USERNAME,
     password: process.env.PASS,
+    port: 5432,
     database: process.env.DBNAME,
     synchronize: true,
     ssl: true,
     logging: true,
     "entities": [
-        "src/entities/**/*.{ts,js}"
+        "dist/entities/**/*.{ts,js}"
     ],
     "migrations": [
-        "src/migrations/**/*.{ts,js}"
+        "dist/migrations/**/*.{ts,js}"
     ],
 };
 const dataSource = new typeorm_1.DataSource(exports.DataSourceConfig);

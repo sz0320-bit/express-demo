@@ -5,13 +5,14 @@ require('dotenv');
 const myDataSource = new typeorm_1.DataSource({
     type: 'postgres',
     host: process.env.HOST,
-    port: 5432,
     username: process.env.USERNAME,
     password: process.env.PASS,
-    database: process.env.USERNAME,
-    entities: ["./dist/entities/*.js"],
-    migrations: ["./dist/migrations/*.js"],
+    port: 5432,
+    ssl: false,
+    database: process.env.DBNAME,
+    entities: ["./dist/entities/*.{ts,js}"],
+    migrations: ["./dist/migrations/*.{ts,js}"],
     logging: true,
-    synchronize: false,
+    synchronize: true,
 });
 exports.default = myDataSource;

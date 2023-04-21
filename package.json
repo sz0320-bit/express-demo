@@ -22,7 +22,7 @@
     "migration:create-dml": "tsc && typeorm migration:generate ./dist/migrations/DMLMigration --dataSource ./ormconfig1.js",
     "migration:create-ddl": "tsc && typeorm migration:generate ./dist/migrations/DDLMigration --dataSource ./ormconfig1.js"
   ,
-    "build": "tsc && node dist/app.js"
+    "build": "tsc"
   },
   "devDependencies": {
     "nodemon": "^2.0.20",
