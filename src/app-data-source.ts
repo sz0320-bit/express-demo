@@ -7,10 +7,9 @@ require('dotenv')
     username: process.env.USERNAME,
     password: process.env.PASS,
     port: 5432,
-    ssl: true,
     database: process.env.DBNAME,
-    entities: ["./dist/entities/*.{ts,js}"],
-    migrations: ["./dist/migrations/*.{ts,js}"],
+    entities: ["./src/entities/*.ts"],
+    migrations: ["./src/migrations/*.ts"],
     logging: true,
     synchronize: true,
 })
