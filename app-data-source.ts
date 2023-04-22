@@ -16,6 +16,7 @@ console.log({
    migrations: ["./src/migrations/*.ts"],
    logging: true,
    synchronize: true,
+
 })
 
  const myDataSource = new DataSource({
