@@ -1,6 +1,6 @@
 import { compare } from 'bcrypt';
 import {AuthUser} from "../entities/auth-user";
-import myDataSource from "../../app-data-source";
+import myDataSource from "../app-data-source";
 import jwt from 'jsonwebtoken';
 
 const userRepository = myDataSource.manager.getRepository(AuthUser);

@@ -1,4 +1,4 @@
-import myDataSource from "../../app-data-source";
+import myDataSource from "../app-data-source";
 import {Post} from "../entities/post";
 import {User} from "../entities/user";
 import {DeepPartial} from "typeorm";
