@@ -12,6 +12,15 @@ RUN git config --global credential.helper store && \
     git clone https://sz0320-bit:${GIT_AUTH_TOKEN}@github.com/sz0320-bit/express-demo.git .
 
 
+
+WORKDIR  /Users/syed/projects/express-demo/src
+
+# Copy .env file
+COPY .env .
+
+WORKDIR /Users/syed/projects/express-demo
+
+
 # Clone project from GitHub
 
 # Install dependencies
