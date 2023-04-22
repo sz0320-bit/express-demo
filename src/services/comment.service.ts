@@ -1,4 +1,4 @@
-import myDataSource from "../app-data-source";
+import myDataSource from "../../app-data-source";
 import {User} from "../entities/user";
 import {Comment} from "../entities/comment";
 import {Post} from "../entities/post";

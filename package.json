@@ -15,7 +15,7 @@
     "start": "tsc && node dist/app.js",
     "dev": "nodemon",
     "swagger-autogen": "node ./swagger.js",
-    "migration:run": "typeorm migration:run -- -d src/app-data-source.ts",
+    "migration:run": "typeorm migration:run -- -d app-data-source.ts",
     "migrate:create": "typeorm migration:create \" src/migrations/",
     "migrate:up": "ts-node --transpile-only ./node_modules/typeorm/cli.js migration:run -d ormconfig.ts",
     "migrate:down": "ts-node --transpile-only ./node-modules/typeorm/cli.js migration:revert -d ormconfig.ts",

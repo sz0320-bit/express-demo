@@ -2,7 +2,7 @@ import express, {Application} from 'express';
 import swaggerUi from 'swagger-ui-express';
 import swaggerAutogen from 'swagger-autogen';
 import path from 'path';
-import myDataSource from "./app-data-source";
+import myDataSource from "../app-data-source";
 import routes from './routes';
 
 myDataSource.initialize()
