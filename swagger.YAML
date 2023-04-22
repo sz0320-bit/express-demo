@@ -21,6 +21,7 @@ security:
 
 
 
+
 paths:
   /users/{id}:
     get:
