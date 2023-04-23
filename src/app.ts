@@ -19,6 +19,10 @@ const app: Application = express();
 const port: number = 3000;
 app.use(express.json());
 
+const cors = require('cors');
+app.use(cors());
+
+
 // Generate swagger documentation
 const swaggerFile = path.join(__dirname, 'swagger-output.json');
 const fs = require('fs');

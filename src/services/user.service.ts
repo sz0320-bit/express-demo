@@ -12,7 +12,7 @@ class UserService {
     }
 
     async addUser({ username, profile_pic, password, email }) {
-        if (!username || !profile_pic || !password || !email) {
+        if (!username  || !password || !email) {
             throw new Error('Values are required.');
         }
 

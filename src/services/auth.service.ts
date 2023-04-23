@@ -6,7 +6,10 @@ import jwt from 'jsonwebtoken';
 const userRepository = myDataSource.manager.getRepository(AuthUser);
  class AuthService {
     async validateUser(username: string, password: string): Promise<AuthUser | null> {
-        const user = await userRepository.findOne({ where: { username } });
+        const user = await userRepository.findOne({
+            where: { username } ,
+            relations: ['profile_id']
+        });
         if (user && await compare(password, user.password)) {
             // The password is correct
             return user;

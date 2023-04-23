@@ -2,6 +2,7 @@ import AuthService from "../services/auth.service";
 import {JwtService} from "../middleware/jwt";
 import jwt from 'jsonwebtoken';
 import path from "path";
+import user from "../routes/user";
 
 require('dotenv').config();
 
@@ -25,11 +26,16 @@ export const login = async (req, res) => {
         maxAge: 24 * 60 * 60 * 1000
     });
 
+    const userResponse = {
+        id: user.profile_id.id,
+        username: user.username,
+        profile_pic: user.profile_id.profile_pic,
+        email: user.email
+    }
     res.json({
         access_token: accessToken,
         refresh_token: refreshToken,
-        username: user.username,
-        userId: user.profile_id,
+        user: userResponse,
         refresh_in: refreshTime,
         expires_in: expireTime
     });
