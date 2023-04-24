@@ -16,11 +16,14 @@ myDataSource.initialize()
 
 require('dotenv').config({ path: './.env' });
 const app: Application = express();
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 3000;
 app.use(express.json());
 
 const cors = require('cors');
-app.use(cors());
+const corsOptions = {
+    origin: true
+}
+app.use(cors(corsOptions));
 
 
 // Generate swagger documentation
