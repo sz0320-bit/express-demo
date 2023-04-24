@@ -11,7 +11,7 @@ RUN git config --global credential.helper store && \
     git config --global user.name "Syed Zaidi" && \
     git clone https://sz0320-bit:${GIT_AUTH_TOKEN}@github.com/sz0320-bit/express-demo.git .
 
-EXPOSE 3000
+EXPOSE 8080
 
 WORKDIR  /Users/syed/projects/express-demo/src
 

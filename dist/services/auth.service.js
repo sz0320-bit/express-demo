@@ -9,7 +9,10 @@ const app_data_source_1 = __importDefault(require("../app-data-source"));
 const userRepository = app_data_source_1.default.manager.getRepository(auth_user_1.AuthUser);
 class AuthService {
     async validateUser(username, password) {
-        const user = await userRepository.findOne({ where: { username } });
+        const user = await userRepository.findOne({
+            where: { username },
+            relations: ['profile_id']
+        });
         if (user && await (0, bcrypt_1.compare)(password, user.password)) {
             // The password is correct
             return user;

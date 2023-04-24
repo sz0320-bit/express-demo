@@ -17,8 +17,10 @@ app_data_source_1.default.initialize()
     console.error("Error during Data Source initialization:", err);
 });
 const app = (0, express_1.default)();
-const port = 3000;
+const port = 8080;
 app.use(express_1.default.json());
+const cors = require('cors');
+app.use(cors());
 // Generate swagger documentation
 const swaggerFile = path_1.default.join(__dirname, 'swagger-output.json');
 const fs = require('fs');

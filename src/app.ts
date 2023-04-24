@@ -16,7 +16,7 @@ myDataSource.initialize()
 
 
 const app: Application = express();
-const port: number = 3000;
+const port: number = 8080;
 app.use(express.json());
 
 const cors = require('cors');

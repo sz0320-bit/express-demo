@@ -27,8 +27,8 @@ console.log({
     password: process.env.PASS,
     port: 5432,
     database: process.env.DBNAME,
-    entities: ["./src/entities/*.ts"],
-    migrations: ["./src/migrations/*.ts"],
+    entities: ["./dist/entities/*.js"],
+    migrations: ["./dist/migrations/*.js"],
     logging: true,
     synchronize: true,
 })

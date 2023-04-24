@@ -23,11 +23,16 @@ const login = async (req, res) => {
         sameSite: 'None', secure: true,
         maxAge: 24 * 60 * 60 * 1000
     });
+    const userResponse = {
+        id: user.profile_id.id,
+        username: user.username,
+        profile_pic: user.profile_id.profile_pic,
+        email: user.email
+    };
     res.json({
         access_token: accessToken,
         refresh_token: refreshToken,
-        username: user.username,
-        userId: user.profile_id,
+        user: userResponse,
         refresh_in: refreshTime,
         expires_in: expireTime
     });
