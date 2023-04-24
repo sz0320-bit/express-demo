@@ -16,8 +16,9 @@ app_data_source_1.default.initialize()
     .catch((err) => {
     console.error("Error during Data Source initialization:", err);
 });
+require('dotenv').config({ path: './.env' });
 const app = (0, express_1.default)();
-const port = 8080;
+const port = process.env.PORT || 8080;
 app.use(express_1.default.json());
 const cors = require('cors');
 app.use(cors());

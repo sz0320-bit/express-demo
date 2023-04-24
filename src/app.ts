@@ -14,9 +14,9 @@ myDataSource.initialize()
     })
 
 
-
+require('dotenv').config({ path: './.env' });
 const app: Application = express();
-const port: number = 8080;
+const port = process.env.PORT || 8080;
 app.use(express.json());
 
 const cors = require('cors');
