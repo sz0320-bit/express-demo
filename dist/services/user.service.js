@@ -17,19 +17,23 @@ class UserService {
         if (!username || !password || !email) {
             throw new Error('Values are required.');
         }
+        const queryRunner = app_data_source_1.default.createQueryRunner();
+        await queryRunner.connect();
+        await queryRunner.startTransaction();
         try {
-            const newProfile = await profileRepository.save(profileRepository.create({
+            const newProfile = await queryRunner.manager.save(queryRunner.manager.create(user_1.User, {
                 username,
                 profile_pic,
                 date_created: new Date(),
                 date_updated: new Date(),
             }));
-            const newUser = await userRepository.save(userRepository.create({
+            const newUser = await queryRunner.manager.save(queryRunner.manager.create(auth_user_1.AuthUser, {
                 username,
                 password: password,
-                email,
                 profile_id: newProfile,
+                email: email,
             }));
+            await queryRunner.commitTransaction();
             return {
                 message: 'Success',
                 username: newUser.username,
@@ -38,10 +42,14 @@ class UserService {
         }
         catch (error) {
             console.log(error);
+            await queryRunner.rollbackTransaction();
             return {
                 message: 'Error',
                 error: error.message,
             };
+        }
+        finally {
+            await queryRunner.release();
         }
     }
     async deleteUser(id) {

@@ -22,7 +22,7 @@ export class AuthUser {
     @Column()
     email: string
 
-    @OneToOne(() => User, {onDelete: 'CASCADE'})
+    @OneToOne(() => User, {onDelete: 'CASCADE', nullable: false})
     @JoinColumn({name: 'profile_id'})
     profile_id: User
 }

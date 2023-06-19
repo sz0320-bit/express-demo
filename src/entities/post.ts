@@ -7,11 +7,13 @@ import {
     JoinColumn,
     OneToMany,
     JoinTable,
-    ManyToMany
+    ManyToMany,
 } from "typeorm"
 import {User} from "./user";
 import {Comment} from "./comment";
 import {Tag} from "./tag";
+import { Like } from "./like";
+import { Dislike } from "./dislike";
 
 @Entity({name: 'posts'})
 export class Post {
@@ -40,6 +42,12 @@ export class Post {
 
     @OneToMany(type => Comment, comment => comment.post)
     comments: Comment[]
+
+    @OneToMany(type => Like, like => like.post)
+    likes: Like[]
+
+    @OneToMany(type => Like, dislike => dislike.post)
+    dislikes: Dislike[]
 
     @ManyToMany(() => Tag, tag => tag.posts)
     @JoinTable()

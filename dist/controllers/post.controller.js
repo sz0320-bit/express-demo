@@ -17,7 +17,9 @@ const getPostsById = async (req, res) => {
 };
 exports.getPostsById = getPostsById;
 const addPost = async (req, res) => {
-    const { username, userId, title, desc } = req.body;
+    const { title, desc } = req.body;
+    const user = req.user;
+    console.log(user);
     try {
         const newPost = await post_service_1.default.addPost(req.body);
         res.status(201).send(newPost);

@@ -21,7 +21,10 @@ const app = (0, express_1.default)();
 const port = process.env.PORT || 3000;
 app.use(express_1.default.json());
 const cors = require('cors');
-app.use(cors());
+const corsOptions = {
+    origin: true
+};
+app.use(cors(corsOptions));
 // Generate swagger documentation
 const swaggerFile = path_1.default.join(__dirname, 'swagger-output.json');
 const fs = require('fs');

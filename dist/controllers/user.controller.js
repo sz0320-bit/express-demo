@@ -19,10 +19,13 @@ const addUser = async (req, res) => {
     const { username, profile_pic, password, email } = req.body;
     try {
         const newUser = await user_service_1.default.addUser(req.body);
+        if (newUser.error) {
+            throw new Error(newUser.error);
+        }
         res.status(201).send(newUser);
     }
     catch (error) {
-        res.status(500).send(error.message);
+        res.status(500).send(error);
     }
 };
 exports.addUser = addUser;

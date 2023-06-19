@@ -65,7 +65,7 @@ __decorate([
     __metadata("design:type", String)
 ], AuthUser.prototype, "email", void 0);
 __decorate([
-    (0, typeorm_1.OneToOne)(() => user_1.User, { onDelete: 'CASCADE' }),
+    (0, typeorm_1.OneToOne)(() => user_1.User, { onDelete: 'CASCADE', nullable: false }),
     (0, typeorm_1.JoinColumn)({ name: 'profile_id' }),
     __metadata("design:type", user_1.User)
 ], AuthUser.prototype, "profile_id", void 0);

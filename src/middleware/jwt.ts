@@ -4,8 +4,9 @@ import { Request, Response, NextFunction } from 'express';
 require('dotenv').config();
 export class JwtService {
     static generateToken(user: AuthUser): {accessToken, refreshToken} {
+
         const payload = {
-            sub: user.id,
+            sub: user.profile_id,
             username: user.username,
             // add any additional claims to the payload as needed
         };

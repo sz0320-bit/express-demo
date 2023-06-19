@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../Angular-Chat-App/.idea/Angular-Chat-App.iml" filepath="$PROJECT_DIR$/../Angular-Chat-App/.idea/Angular-Chat-App.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/express-demo.iml" filepath="$PROJECT_DIR$/.idea/express-demo.iml" />
     </modules>
   </component>
