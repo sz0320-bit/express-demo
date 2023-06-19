@@ -27,7 +27,7 @@ __decorate([
     __metadata("design:type", String)
 ], Like.prototype, "username", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => post_1.Post, post => post.likes),
+    (0, typeorm_1.ManyToOne)(() => post_1.Post, post => post.likes, { onDelete: 'CASCADE' }),
     __metadata("design:type", post_1.Post)
 ], Like.prototype, "post", void 0);
 Like = __decorate([

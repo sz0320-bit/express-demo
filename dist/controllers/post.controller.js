@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deletePost = exports.addPost = exports.likePost = exports.getPosts = exports.getPostsById = void 0;
+exports.deletePost = exports.addPost = exports.removeDislike = exports.removeLike = exports.dislikePost = exports.likePost = exports.getPosts = exports.getPostsById = void 0;
 const post_service_1 = __importDefault(require("../services/post.service"));
 const getPostsById = async (req, res) => {
     console.log(req.params.id);
@@ -47,6 +47,69 @@ const likePost = async (req, res) => {
     }
 };
 exports.likePost = likePost;
+const dislikePost = async (req, res) => {
+    const postId = req.params.id;
+    if (!postId) {
+        res.status(400).send('no id passed');
+    }
+    console.log(postId);
+    const user = req.user.payload;
+    const payload = {
+        username: user.sub.username,
+        userId: user.sub.id,
+        postId: postId,
+    };
+    try {
+        const newPost = await post_service_1.default.addDislike(payload);
+        res.status(201).send(newPost);
+    }
+    catch (error) {
+        res.status(400).send(error.message);
+    }
+};
+exports.dislikePost = dislikePost;
+const removeLike = async (req, res) => {
+    const postId = req.params.id;
+    if (!postId) {
+        res.status(400).send('no id passed');
+    }
+    console.log(postId);
+    const user = req.user.payload;
+    const payload = {
+        username: user.sub.username,
+        userId: user.sub.id,
+        postId: postId,
+    };
+    try {
+        const newPost = await post_service_1.default.removeLike(payload);
+        res.status(201).send(newPost);
+    }
+    catch (error) {
+        res.status(400).send(error.message);
+    }
+};
+exports.removeLike = removeLike;
+const removeDislike = async (req, res) => {
+    const postId = req.params.id;
+    if (!postId) {
+        res.status(400).send('no id passed');
+    }
+    console.log(postId);
+    const user = req.user.payload;
+    const payload = {
+        username: user.sub.username,
+        userId: user.sub.id,
+        postId: postId,
+    };
+    try {
+        const newPost = await post_service_1.default.removeDislike(payload);
+        res.status(201).send(newPost);
+    }
+    catch (error) {
+        res.status(400).send(error.message);
+    }
+};
+exports.removeDislike = removeDislike;
 const addPost = async (req, res) => {
     const { title, desc } = req.body;
     const user = req.user.payload;
