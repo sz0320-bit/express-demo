@@ -9,7 +9,7 @@ require('dotenv').config();
 class JwtService {
     static generateToken(user) {
         const payload = {
-            sub: user.id,
+            sub: user.profile_id,
             username: user.username,
             // add any additional claims to the payload as needed
         };

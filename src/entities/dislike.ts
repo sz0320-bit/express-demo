@@ -12,6 +12,6 @@ export class Dislike {
   @Column()
   username: string;
 
-  @ManyToOne(() => Post, post => post.dislikes)
+  @ManyToOne(() => Post, post => post.dislikes, {onDelete: 'CASCADE'})
   post: Post;
 }

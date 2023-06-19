@@ -41,6 +41,72 @@ export const likePost = async (req, res) => {
     }
 }
 
+export const dislikePost = async (req, res) => {
+    const postId = req.params.id;
+    if(!postId){
+        res.status(400).send('no id passed');
+    }
+    console.log(postId);
+    
+    const user = req.user.payload;
+
+    const payload = {
+        username: user.sub.username,
+        userId: user.sub.id,
+        postId: postId,
+    }
+    try {
+        const newPost = await postService.addDislike(payload);
+        res.status(201).send(newPost);
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+}
+
+export const removeLike = async (req, res) => {
+    const postId = req.params.id;
+    if(!postId){
+        res.status(400).send('no id passed');
+    }
+    console.log(postId);
+    
+    const user = req.user.payload;
+
+    const payload = {
+        username: user.sub.username,
+        userId: user.sub.id,
+        postId: postId,
+    }
+    try {
+        const newPost = await postService.removeLike(payload);
+        res.status(201).send(newPost);
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+}
+
+export const removeDislike = async (req, res) => {
+    const postId = req.params.id;
+    if(!postId){
+        res.status(400).send('no id passed');
+    }
+    console.log(postId);
+    
+    const user = req.user.payload;
+
+    const payload = {
+        username: user.sub.username,
+        userId: user.sub.id,
+        postId: postId,
+    }
+    try {
+        const newPost = await postService.removeDislike(payload);
+        res.status(201).send(newPost);
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+}
+
 export const addPost = async (req, res) => {
     const { title, desc } = req.body;
     const user = req.user.payload;

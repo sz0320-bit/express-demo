@@ -11,5 +11,7 @@ const router = express_1.default.Router();
 // Define routes
 router.get('/posts/:id', jwt_1.authenticateAccessToken, (req, res) => (0, post_controller_1.getPostsById)(req, res));
 router.post('/posts', jwt_1.authenticateAccessToken, (req, res) => (0, post_controller_1.addPost)(req, res));
+router.patch('/posts/:id/like', jwt_1.authenticateAccessToken, (req, res) => (0, post_controller_1.likePost)(req, res));
+router.get('/posts', jwt_1.authenticateAccessToken, (req, res) => (0, post_controller_1.getPosts)(req, res));
 router.delete('/posts/:id', jwt_1.authenticateAccessToken, (req, res) => (0, post_controller_1.deletePost)(req, res));
 exports.default = router;

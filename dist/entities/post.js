@@ -14,6 +14,7 @@ const typeorm_1 = require("typeorm");
 const user_1 = require("./user");
 const comment_1 = require("./comment");
 const tag_1 = require("./tag");
+const like_1 = require("./like");
 let Post = class Post {
 };
 __decorate([
@@ -49,6 +50,14 @@ __decorate([
     (0, typeorm_1.OneToMany)(type => comment_1.Comment, comment => comment.post),
     __metadata("design:type", Array)
 ], Post.prototype, "comments", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(type => like_1.Like, like => like.post),
+    __metadata("design:type", Array)
+], Post.prototype, "likes", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(type => like_1.Like, dislike => dislike.post),
+    __metadata("design:type", Array)
+], Post.prototype, "dislikes", void 0);
 __decorate([
     (0, typeorm_1.ManyToMany)(() => tag_1.Tag, tag => tag.posts),
     (0, typeorm_1.JoinTable)(),

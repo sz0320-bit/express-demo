@@ -46,7 +46,7 @@ export class Post {
     @OneToMany(type => Like, like => like.post)
     likes: Like[]
 
-    @OneToMany(type => Like, dislike => dislike.post)
+    @OneToMany(type => Dislike, dislike => dislike.post)
     dislikes: Dislike[]
 
     @ManyToMany(() => Tag, tag => tag.posts)
