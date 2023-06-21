@@ -9,6 +9,7 @@ console.log({
    type: 'postgres',
    host: process.env.HOST,
    username: process.env.USERNAME,
+   ssl: true,
    password: process.env.PASS,
    port: 5432,
    database: process.env.DBNAME,
@@ -16,7 +17,6 @@ console.log({
    migrations: ["./dist/migrations/*.js"],
    logging: true,
    synchronize: true,
-
 })
 
  const myDataSource = new DataSource({
